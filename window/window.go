@@ -19,9 +19,7 @@ type WindowConfig struct {
 type Window interface {
 	Create(WindowConfig) error
 	Destroy() error
-
-	IsRunning() bool
-	ProcessEvents()
+	Resize(w, h int)
 	SwapBuffers()
 }
 

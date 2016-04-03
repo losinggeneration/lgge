@@ -1,285 +1,287 @@
 package input
 
-import "github.com/veandco/go-sdl2/sdl"
-
-// Mirror sdl keys
-const (
-	K_UNKNOWN = sdl.K_UNKNOWN
-
-	K_RETURN     = sdl.K_RETURN
-	K_ESCAPE     = sdl.K_ESCAPE
-	K_BACKSPACE  = sdl.K_BACKSPACE
-	K_TAB        = sdl.K_TAB
-	K_SPACE      = sdl.K_SPACE
-	K_EXCLAIM    = sdl.K_EXCLAIM
-	K_QUOTEDBL   = sdl.K_QUOTEDBL
-	K_HASH       = sdl.K_HASH
-	K_PERCENT    = sdl.K_PERCENT
-	K_DOLLAR     = sdl.K_DOLLAR
-	K_AMPERSAND  = sdl.K_AMPERSAND
-	K_QUOTE      = sdl.K_QUOTE
-	K_LEFTPAREN  = sdl.K_LEFTPAREN
-	K_RIGHTPAREN = sdl.K_RIGHTPAREN
-	K_ASTERISK   = sdl.K_ASTERISK
-	K_PLUS       = sdl.K_PLUS
-	K_COMMA      = sdl.K_COMMA
-	K_MINUS      = sdl.K_MINUS
-	K_PERIOD     = sdl.K_PERIOD
-	K_SLASH      = sdl.K_SLASH
-	K_0          = sdl.K_0
-	K_1          = sdl.K_1
-	K_2          = sdl.K_2
-	K_3          = sdl.K_3
-	K_4          = sdl.K_4
-	K_5          = sdl.K_5
-	K_6          = sdl.K_6
-	K_7          = sdl.K_7
-	K_8          = sdl.K_8
-	K_9          = sdl.K_9
-	K_COLON      = sdl.K_COLON
-	K_SEMICOLON  = sdl.K_SEMICOLON
-	K_LESS       = sdl.K_LESS
-	K_EQUALS     = sdl.K_EQUALS
-	K_GREATER    = sdl.K_GREATER
-	K_QUESTION   = sdl.K_QUESTION
-	K_AT         = sdl.K_AT
-
-	K_LEFTBRACKET  = sdl.K_LEFTBRACKET
-	K_BACKSLASH    = sdl.K_BACKSLASH
-	K_RIGHTBRACKET = sdl.K_RIGHTBRACKET
-	K_CARET        = sdl.K_CARET
-	K_UNDERSCORE   = sdl.K_UNDERSCORE
-	K_BACKQUOTE    = sdl.K_BACKQUOTE
-	K_a            = sdl.K_a
-	K_b            = sdl.K_b
-	K_c            = sdl.K_c
-	K_d            = sdl.K_d
-	K_e            = sdl.K_e
-	K_f            = sdl.K_f
-	K_g            = sdl.K_g
-	K_h            = sdl.K_h
-	K_i            = sdl.K_i
-	K_j            = sdl.K_j
-	K_k            = sdl.K_k
-	K_l            = sdl.K_l
-	K_m            = sdl.K_m
-	K_n            = sdl.K_n
-	K_o            = sdl.K_o
-	K_p            = sdl.K_p
-	K_q            = sdl.K_q
-	K_r            = sdl.K_r
-	K_s            = sdl.K_s
-	K_t            = sdl.K_t
-	K_u            = sdl.K_u
-	K_v            = sdl.K_v
-	K_w            = sdl.K_w
-	K_x            = sdl.K_x
-	K_y            = sdl.K_y
-	K_z            = sdl.K_z
-
-	K_CAPSLOCK = sdl.K_CAPSLOCK
-
-	K_F1  = sdl.K_F1
-	K_F2  = sdl.K_F2
-	K_F3  = sdl.K_F3
-	K_F4  = sdl.K_F4
-	K_F5  = sdl.K_F5
-	K_F6  = sdl.K_F6
-	K_F7  = sdl.K_F7
-	K_F8  = sdl.K_F8
-	K_F9  = sdl.K_F9
-	K_F10 = sdl.K_F10
-	K_F11 = sdl.K_F11
-	K_F12 = sdl.K_F12
-
-	K_PRINTSCREEN = sdl.K_PRINTSCREEN
-	K_SCROLLLOCK  = sdl.K_SCROLLLOCK
-	K_PAUSE       = sdl.K_PAUSE
-	K_INSERT      = sdl.K_INSERT
-	K_HOME        = sdl.K_HOME
-	K_PAGEUP      = sdl.K_PAGEUP
-	K_DELETE      = sdl.K_DELETE
-	K_END         = sdl.K_END
-	K_PAGEDOWN    = sdl.K_PAGEDOWN
-	K_RIGHT       = sdl.K_RIGHT
-	K_LEFT        = sdl.K_LEFT
-	K_DOWN        = sdl.K_DOWN
-	K_UP          = sdl.K_UP
-
-	K_NUMLOCKCLEAR = sdl.K_NUMLOCKCLEAR
-	K_KP_DIVIDE    = sdl.K_KP_DIVIDE
-	K_KP_MULTIPLY  = sdl.K_KP_MULTIPLY
-	K_KP_MINUS     = sdl.K_KP_MINUS
-	K_KP_PLUS      = sdl.K_KP_PLUS
-	K_KP_ENTER     = sdl.K_KP_ENTER
-	K_KP_1         = sdl.K_KP_1
-	K_KP_2         = sdl.K_KP_2
-	K_KP_3         = sdl.K_KP_3
-	K_KP_4         = sdl.K_KP_4
-	K_KP_5         = sdl.K_KP_5
-	K_KP_6         = sdl.K_KP_6
-	K_KP_7         = sdl.K_KP_7
-	K_KP_8         = sdl.K_KP_8
-	K_KP_9         = sdl.K_KP_9
-	K_KP_0         = sdl.K_KP_0
-	K_KP_PERIOD    = sdl.K_KP_PERIOD
-
-	K_APPLICATION    = sdl.K_APPLICATION
-	K_POWER          = sdl.K_POWER
-	K_KP_EQUALS      = sdl.K_KP_EQUALS
-	K_F13            = sdl.K_F13
-	K_F14            = sdl.K_F14
-	K_F15            = sdl.K_F15
-	K_F16            = sdl.K_F16
-	K_F17            = sdl.K_F17
-	K_F18            = sdl.K_F18
-	K_F19            = sdl.K_F19
-	K_F20            = sdl.K_F20
-	K_F21            = sdl.K_F21
-	K_F22            = sdl.K_F22
-	K_F23            = sdl.K_F23
-	K_F24            = sdl.K_F24
-	K_EXECUTE        = sdl.K_EXECUTE
-	K_HELP           = sdl.K_HELP
-	K_MENU           = sdl.K_MENU
-	K_SELECT         = sdl.K_SELECT
-	K_STOP           = sdl.K_STOP
-	K_AGAIN          = sdl.K_AGAIN
-	K_UNDO           = sdl.K_UNDO
-	K_CUT            = sdl.K_CUT
-	K_COPY           = sdl.K_COPY
-	K_PASTE          = sdl.K_PASTE
-	K_FIND           = sdl.K_FIND
-	K_MUTE           = sdl.K_MUTE
-	K_VOLUMEUP       = sdl.K_VOLUMEUP
-	K_VOLUMEDOWN     = sdl.K_VOLUMEDOWN
-	K_KP_COMMA       = sdl.K_KP_COMMA
-	K_KP_EQUALSAS400 = sdl.K_KP_EQUALSAS400
-
-	K_ALTERASE   = sdl.K_ALTERASE
-	K_SYSREQ     = sdl.K_SYSREQ
-	K_CANCEL     = sdl.K_CANCEL
-	K_CLEAR      = sdl.K_CLEAR
-	K_PRIOR      = sdl.K_PRIOR
-	K_RETURN2    = sdl.K_RETURN2
-	K_SEPARATOR  = sdl.K_SEPARATOR
-	K_OUT        = sdl.K_OUT
-	K_OPER       = sdl.K_OPER
-	K_CLEARAGAIN = sdl.K_CLEARAGAIN
-	K_CRSEL      = sdl.K_CRSEL
-	K_EXSEL      = sdl.K_EXSEL
-
-	K_KP_00              = sdl.K_KP_00
-	K_KP_000             = sdl.K_KP_000
-	K_THOUSANDSSEPARATOR = sdl.K_THOUSANDSSEPARATOR
-	K_DECIMALSEPARATOR   = sdl.K_DECIMALSEPARATOR
-	K_CURRENCYUNIT       = sdl.K_CURRENCYUNIT
-	K_CURRENCYSUBUNIT    = sdl.K_CURRENCYSUBUNIT
-	K_KP_LEFTPAREN       = sdl.K_KP_LEFTPAREN
-	K_KP_RIGHTPAREN      = sdl.K_KP_RIGHTPAREN
-	K_KP_LEFTBRACE       = sdl.K_KP_LEFTBRACE
-	K_KP_RIGHTBRACE      = sdl.K_KP_RIGHTBRACE
-	K_KP_TAB             = sdl.K_KP_TAB
-	K_KP_BACKSPACE       = sdl.K_KP_BACKSPACE
-	K_KP_A               = sdl.K_KP_A
-	K_KP_B               = sdl.K_KP_B
-	K_KP_C               = sdl.K_KP_C
-	K_KP_D               = sdl.K_KP_D
-	K_KP_E               = sdl.K_KP_E
-	K_KP_F               = sdl.K_KP_F
-	K_KP_XOR             = sdl.K_KP_XOR
-	K_KP_POWER           = sdl.K_KP_POWER
-	K_KP_PERCENT         = sdl.K_KP_PERCENT
-	K_KP_LESS            = sdl.K_KP_LESS
-	K_KP_GREATER         = sdl.K_KP_GREATER
-	K_KP_AMPERSAND       = sdl.K_KP_AMPERSAND
-	K_KP_DBLAMPERSAND    = sdl.K_KP_DBLAMPERSAND
-	K_KP_VERTICALBAR     = sdl.K_KP_VERTICALBAR
-	K_KP_DBLVERTICALBAR  = sdl.K_KP_DBLVERTICALBAR
-	K_KP_COLON           = sdl.K_KP_COLON
-	K_KP_HASH            = sdl.K_KP_HASH
-	K_KP_SPACE           = sdl.K_KP_SPACE
-	K_KP_AT              = sdl.K_KP_AT
-	K_KP_EXCLAM          = sdl.K_KP_EXCLAM
-	K_KP_MEMSTORE        = sdl.K_KP_MEMSTORE
-	K_KP_MEMRECALL       = sdl.K_KP_MEMRECALL
-	K_KP_MEMCLEAR        = sdl.K_KP_MEMCLEAR
-	K_KP_MEMADD          = sdl.K_KP_MEMADD
-	K_KP_MEMSUBTRACT     = sdl.K_KP_MEMSUBTRACT
-	K_KP_MEMMULTIPLY     = sdl.K_KP_MEMMULTIPLY
-	K_KP_MEMDIVIDE       = sdl.K_KP_MEMDIVIDE
-	K_KP_PLUSMINUS       = sdl.K_KP_PLUSMINUS
-	K_KP_CLEAR           = sdl.K_KP_CLEAR
-	K_KP_CLEARENTRY      = sdl.K_KP_CLEARENTRY
-	K_KP_BINARY          = sdl.K_KP_BINARY
-	K_KP_OCTAL           = sdl.K_KP_OCTAL
-	K_KP_DECIMAL         = sdl.K_KP_DECIMAL
-	K_KP_HEXADECIMAL     = sdl.K_KP_HEXADECIMAL
-
-	K_LCTRL  = sdl.K_LCTRL
-	K_LSHIFT = sdl.K_LSHIFT
-	K_LALT   = sdl.K_LALT
-	K_LGUI   = sdl.K_LGUI
-	K_RCTRL  = sdl.K_RCTRL
-	K_RSHIFT = sdl.K_RSHIFT
-	K_RALT   = sdl.K_RALT
-	K_RGUI   = sdl.K_RGUI
-
-	K_MODE = sdl.K_MODE
-
-	K_AUDIONEXT    = sdl.K_AUDIONEXT
-	K_AUDIOPREV    = sdl.K_AUDIOPREV
-	K_AUDIOSTOP    = sdl.K_AUDIOSTOP
-	K_AUDIOPLAY    = sdl.K_AUDIOPLAY
-	K_AUDIOMUTE    = sdl.K_AUDIOMUTE
-	K_MEDIASELECT  = sdl.K_MEDIASELECT
-	K_WWW          = sdl.K_WWW
-	K_MAIL         = sdl.K_MAIL
-	K_CALCULATOR   = sdl.K_CALCULATOR
-	K_COMPUTER     = sdl.K_COMPUTER
-	K_AC_SEARCH    = sdl.K_AC_SEARCH
-	K_AC_HOME      = sdl.K_AC_HOME
-	K_AC_BACK      = sdl.K_AC_BACK
-	K_AC_FORWARD   = sdl.K_AC_FORWARD
-	K_AC_STOP      = sdl.K_AC_STOP
-	K_AC_REFRESH   = sdl.K_AC_REFRESH
-	K_AC_BOOKMARKS = sdl.K_AC_BOOKMARKS
-
-	K_BRIGHTNESSDOWN = sdl.K_BRIGHTNESSDOWN
-	K_BRIGHTNESSUP   = sdl.K_BRIGHTNESSUP
-	K_DISPLAYSWITCH  = sdl.K_DISPLAYSWITCH
-	K_KBDILLUMTOGGLE = sdl.K_KBDILLUMTOGGLE
-	K_KBDILLUMDOWN   = sdl.K_KBDILLUMDOWN
-	K_KBDILLUMUP     = sdl.K_KBDILLUMUP
-	K_EJECT          = sdl.K_EJECT
-	K_SLEEP          = sdl.K_SLEEP
+import (
+	"github.com/losinggeneration/lgge/input"
+	"github.com/veandco/go-sdl2/sdl"
 )
 
-// mirror SDL mod keys
-const (
-	MOD_NONE   = sdl.KMOD_NONE
-	MOD_LSHIFT = sdl.KMOD_LSHIFT
-	MOD_RSHIFT = sdl.KMOD_RSHIFT
-	MOD_LCTRL  = sdl.KMOD_LCTRL
-	MOD_RCTRL  = sdl.KMOD_RCTRL
-	MOD_LALT   = sdl.KMOD_LALT
-	MOD_RALT   = sdl.KMOD_RALT
-	MOD_LGUI   = sdl.KMOD_LGUI
-	MOD_RGUI   = sdl.KMOD_RGUI
-	MOD_NUM    = sdl.KMOD_NUM
-	MOD_CAPS   = sdl.KMOD_CAPS
-	MOD_MODE   = sdl.KMOD_MODE
-	MOD_CTRL   = sdl.KMOD_CTRL
-	MOD_SHIFT  = sdl.KMOD_SHIFT
-	MOD_ALT    = sdl.KMOD_ALT
-	MOD_GUI    = sdl.KMOD_GUI
-)
+// translate SDL keys to input keys
+var keys = map[sdl.Keycode]input.Key{
+	sdl.K_UNKNOWN: input.K_UNKNOWN,
 
-// mirror SDL mouse buttons
-const (
-	BUTTON_LEFT   = sdl.BUTTON_LEFT
-	BUTTON_MIDDLE = sdl.BUTTON_MIDDLE
-	BUTTON_RIGHT  = sdl.BUTTON_RIGHT
-	BUTTON_X1     = sdl.BUTTON_X1
-	BUTTON_X2     = sdl.BUTTON_X2
-)
+	sdl.K_RETURN:     input.K_RETURN,
+	sdl.K_ESCAPE:     input.K_ESCAPE,
+	sdl.K_BACKSPACE:  input.K_BACKSPACE,
+	sdl.K_TAB:        input.K_TAB,
+	sdl.K_SPACE:      input.K_SPACE,
+	sdl.K_EXCLAIM:    input.K_EXCLAIM,
+	sdl.K_QUOTEDBL:   input.K_QUOTEDBL,
+	sdl.K_HASH:       input.K_HASH,
+	sdl.K_PERCENT:    input.K_PERCENT,
+	sdl.K_DOLLAR:     input.K_DOLLAR,
+	sdl.K_AMPERSAND:  input.K_AMPERSAND,
+	sdl.K_QUOTE:      input.K_QUOTE,
+	sdl.K_LEFTPAREN:  input.K_LEFTPAREN,
+	sdl.K_RIGHTPAREN: input.K_RIGHTPAREN,
+	sdl.K_ASTERISK:   input.K_ASTERISK,
+	sdl.K_PLUS:       input.K_PLUS,
+	sdl.K_COMMA:      input.K_COMMA,
+	sdl.K_MINUS:      input.K_MINUS,
+	sdl.K_PERIOD:     input.K_PERIOD,
+	sdl.K_SLASH:      input.K_SLASH,
+	sdl.K_0:          input.K_0,
+	sdl.K_1:          input.K_1,
+	sdl.K_2:          input.K_2,
+	sdl.K_3:          input.K_3,
+	sdl.K_4:          input.K_4,
+	sdl.K_5:          input.K_5,
+	sdl.K_6:          input.K_6,
+	sdl.K_7:          input.K_7,
+	sdl.K_8:          input.K_8,
+	sdl.K_9:          input.K_9,
+	sdl.K_COLON:      input.K_COLON,
+	sdl.K_SEMICOLON:  input.K_SEMICOLON,
+	sdl.K_LESS:       input.K_LESS,
+	sdl.K_EQUALS:     input.K_EQUALS,
+	sdl.K_GREATER:    input.K_GREATER,
+	sdl.K_QUESTION:   input.K_QUESTION,
+	sdl.K_AT:         input.K_AT,
+
+	sdl.K_LEFTBRACKET:  input.K_LEFTBRACKET,
+	sdl.K_BACKSLASH:    input.K_BACKSLASH,
+	sdl.K_RIGHTBRACKET: input.K_RIGHTBRACKET,
+	sdl.K_CARET:        input.K_CARET,
+	sdl.K_UNDERSCORE:   input.K_UNDERSCORE,
+	sdl.K_BACKQUOTE:    input.K_BACKQUOTE,
+	sdl.K_a:            input.K_a,
+	sdl.K_b:            input.K_b,
+	sdl.K_c:            input.K_c,
+	sdl.K_d:            input.K_d,
+	sdl.K_e:            input.K_e,
+	sdl.K_f:            input.K_f,
+	sdl.K_g:            input.K_g,
+	sdl.K_h:            input.K_h,
+	sdl.K_i:            input.K_i,
+	sdl.K_j:            input.K_j,
+	sdl.K_k:            input.K_k,
+	sdl.K_l:            input.K_l,
+	sdl.K_m:            input.K_m,
+	sdl.K_n:            input.K_n,
+	sdl.K_o:            input.K_o,
+	sdl.K_p:            input.K_p,
+	sdl.K_q:            input.K_q,
+	sdl.K_r:            input.K_r,
+	sdl.K_s:            input.K_s,
+	sdl.K_t:            input.K_t,
+	sdl.K_u:            input.K_u,
+	sdl.K_v:            input.K_v,
+	sdl.K_w:            input.K_w,
+	sdl.K_x:            input.K_x,
+	sdl.K_y:            input.K_y,
+	sdl.K_z:            input.K_z,
+
+	sdl.K_CAPSLOCK: input.K_CAPSLOCK,
+
+	sdl.K_F1:  input.K_F1,
+	sdl.K_F2:  input.K_F2,
+	sdl.K_F3:  input.K_F3,
+	sdl.K_F4:  input.K_F4,
+	sdl.K_F5:  input.K_F5,
+	sdl.K_F6:  input.K_F6,
+	sdl.K_F7:  input.K_F7,
+	sdl.K_F8:  input.K_F8,
+	sdl.K_F9:  input.K_F9,
+	sdl.K_F10: input.K_F10,
+	sdl.K_F11: input.K_F11,
+	sdl.K_F12: input.K_F12,
+
+	sdl.K_PRINTSCREEN: input.K_PRINTSCREEN,
+	sdl.K_SCROLLLOCK:  input.K_SCROLLLOCK,
+	sdl.K_PAUSE:       input.K_PAUSE,
+	sdl.K_INSERT:      input.K_INSERT,
+	sdl.K_HOME:        input.K_HOME,
+	sdl.K_PAGEUP:      input.K_PAGEUP,
+	sdl.K_DELETE:      input.K_DELETE,
+	sdl.K_END:         input.K_END,
+	sdl.K_PAGEDOWN:    input.K_PAGEDOWN,
+	sdl.K_RIGHT:       input.K_RIGHT,
+	sdl.K_LEFT:        input.K_LEFT,
+	sdl.K_DOWN:        input.K_DOWN,
+	sdl.K_UP:          input.K_UP,
+
+	sdl.K_NUMLOCKCLEAR: input.K_NUMLOCKCLEAR,
+	sdl.K_KP_DIVIDE:    input.K_KP_DIVIDE,
+	sdl.K_KP_MULTIPLY:  input.K_KP_MULTIPLY,
+	sdl.K_KP_MINUS:     input.K_KP_MINUS,
+	sdl.K_KP_PLUS:      input.K_KP_PLUS,
+	sdl.K_KP_ENTER:     input.K_KP_ENTER,
+	sdl.K_KP_1:         input.K_KP_1,
+	sdl.K_KP_2:         input.K_KP_2,
+	sdl.K_KP_3:         input.K_KP_3,
+	sdl.K_KP_4:         input.K_KP_4,
+	sdl.K_KP_5:         input.K_KP_5,
+	sdl.K_KP_6:         input.K_KP_6,
+	sdl.K_KP_7:         input.K_KP_7,
+	sdl.K_KP_8:         input.K_KP_8,
+	sdl.K_KP_9:         input.K_KP_9,
+	sdl.K_KP_0:         input.K_KP_0,
+	sdl.K_KP_PERIOD:    input.K_KP_PERIOD,
+
+	sdl.K_APPLICATION:    input.K_APPLICATION,
+	sdl.K_POWER:          input.K_POWER,
+	sdl.K_KP_EQUALS:      input.K_KP_EQUALS,
+	sdl.K_F13:            input.K_F13,
+	sdl.K_F14:            input.K_F14,
+	sdl.K_F15:            input.K_F15,
+	sdl.K_F16:            input.K_F16,
+	sdl.K_F17:            input.K_F17,
+	sdl.K_F18:            input.K_F18,
+	sdl.K_F19:            input.K_F19,
+	sdl.K_F20:            input.K_F20,
+	sdl.K_F21:            input.K_F21,
+	sdl.K_F22:            input.K_F22,
+	sdl.K_F23:            input.K_F23,
+	sdl.K_F24:            input.K_F24,
+	sdl.K_EXECUTE:        input.K_EXECUTE,
+	sdl.K_HELP:           input.K_HELP,
+	sdl.K_MENU:           input.K_MENU,
+	sdl.K_SELECT:         input.K_SELECT,
+	sdl.K_STOP:           input.K_STOP,
+	sdl.K_AGAIN:          input.K_AGAIN,
+	sdl.K_UNDO:           input.K_UNDO,
+	sdl.K_CUT:            input.K_CUT,
+	sdl.K_COPY:           input.K_COPY,
+	sdl.K_PASTE:          input.K_PASTE,
+	sdl.K_FIND:           input.K_FIND,
+	sdl.K_MUTE:           input.K_MUTE,
+	sdl.K_VOLUMEUP:       input.K_VOLUMEUP,
+	sdl.K_VOLUMEDOWN:     input.K_VOLUMEDOWN,
+	sdl.K_KP_COMMA:       input.K_KP_COMMA,
+	sdl.K_KP_EQUALSAS400: input.K_KP_EQUALSAS400,
+
+	sdl.K_ALTERASE:   input.K_ALTERASE,
+	sdl.K_SYSREQ:     input.K_SYSREQ,
+	sdl.K_CANCEL:     input.K_CANCEL,
+	sdl.K_CLEAR:      input.K_CLEAR,
+	sdl.K_PRIOR:      input.K_PRIOR,
+	sdl.K_RETURN2:    input.K_RETURN2,
+	sdl.K_SEPARATOR:  input.K_SEPARATOR,
+	sdl.K_OUT:        input.K_OUT,
+	sdl.K_OPER:       input.K_OPER,
+	sdl.K_CLEARAGAIN: input.K_CLEARAGAIN,
+	sdl.K_CRSEL:      input.K_CRSEL,
+	sdl.K_EXSEL:      input.K_EXSEL,
+
+	sdl.K_KP_00:              input.K_KP_00,
+	sdl.K_KP_000:             input.K_KP_000,
+	sdl.K_THOUSANDSSEPARATOR: input.K_THOUSANDSSEPARATOR,
+	sdl.K_DECIMALSEPARATOR:   input.K_DECIMALSEPARATOR,
+	sdl.K_CURRENCYUNIT:       input.K_CURRENCYUNIT,
+	sdl.K_CURRENCYSUBUNIT:    input.K_CURRENCYSUBUNIT,
+	sdl.K_KP_LEFTPAREN:       input.K_KP_LEFTPAREN,
+	sdl.K_KP_RIGHTPAREN:      input.K_KP_RIGHTPAREN,
+	sdl.K_KP_LEFTBRACE:       input.K_KP_LEFTBRACE,
+	sdl.K_KP_RIGHTBRACE:      input.K_KP_RIGHTBRACE,
+	sdl.K_KP_TAB:             input.K_KP_TAB,
+	sdl.K_KP_BACKSPACE:       input.K_KP_BACKSPACE,
+	sdl.K_KP_A:               input.K_KP_A,
+	sdl.K_KP_B:               input.K_KP_B,
+	sdl.K_KP_C:               input.K_KP_C,
+	sdl.K_KP_D:               input.K_KP_D,
+	sdl.K_KP_E:               input.K_KP_E,
+	sdl.K_KP_F:               input.K_KP_F,
+	sdl.K_KP_XOR:             input.K_KP_XOR,
+	sdl.K_KP_POWER:           input.K_KP_POWER,
+	sdl.K_KP_PERCENT:         input.K_KP_PERCENT,
+	sdl.K_KP_LESS:            input.K_KP_LESS,
+	sdl.K_KP_GREATER:         input.K_KP_GREATER,
+	sdl.K_KP_AMPERSAND:       input.K_KP_AMPERSAND,
+	sdl.K_KP_DBLAMPERSAND:    input.K_KP_DBLAMPERSAND,
+	sdl.K_KP_VERTICALBAR:     input.K_KP_VERTICALBAR,
+	sdl.K_KP_DBLVERTICALBAR:  input.K_KP_DBLVERTICALBAR,
+	sdl.K_KP_COLON:           input.K_KP_COLON,
+	sdl.K_KP_HASH:            input.K_KP_HASH,
+	sdl.K_KP_SPACE:           input.K_KP_SPACE,
+	sdl.K_KP_AT:              input.K_KP_AT,
+	sdl.K_KP_EXCLAM:          input.K_KP_EXCLAM,
+	sdl.K_KP_MEMSTORE:        input.K_KP_MEMSTORE,
+	sdl.K_KP_MEMRECALL:       input.K_KP_MEMRECALL,
+	sdl.K_KP_MEMCLEAR:        input.K_KP_MEMCLEAR,
+	sdl.K_KP_MEMADD:          input.K_KP_MEMADD,
+	sdl.K_KP_MEMSUBTRACT:     input.K_KP_MEMSUBTRACT,
+	sdl.K_KP_MEMMULTIPLY:     input.K_KP_MEMMULTIPLY,
+	sdl.K_KP_MEMDIVIDE:       input.K_KP_MEMDIVIDE,
+	sdl.K_KP_PLUSMINUS:       input.K_KP_PLUSMINUS,
+	sdl.K_KP_CLEAR:           input.K_KP_CLEAR,
+	sdl.K_KP_CLEARENTRY:      input.K_KP_CLEARENTRY,
+	sdl.K_KP_BINARY:          input.K_KP_BINARY,
+	sdl.K_KP_OCTAL:           input.K_KP_OCTAL,
+	sdl.K_KP_DECIMAL:         input.K_KP_DECIMAL,
+	sdl.K_KP_HEXADECIMAL:     input.K_KP_HEXADECIMAL,
+
+	sdl.K_LCTRL:  input.K_LCTRL,
+	sdl.K_LSHIFT: input.K_LSHIFT,
+	sdl.K_LALT:   input.K_LALT,
+	sdl.K_LGUI:   input.K_LGUI,
+	sdl.K_RCTRL:  input.K_RCTRL,
+	sdl.K_RSHIFT: input.K_RSHIFT,
+	sdl.K_RALT:   input.K_RALT,
+	sdl.K_RGUI:   input.K_RGUI,
+
+	sdl.K_MODE: input.K_MODE,
+
+	sdl.K_AUDIONEXT:    input.K_AUDIONEXT,
+	sdl.K_AUDIOPREV:    input.K_AUDIOPREV,
+	sdl.K_AUDIOSTOP:    input.K_AUDIOSTOP,
+	sdl.K_AUDIOPLAY:    input.K_AUDIOPLAY,
+	sdl.K_AUDIOMUTE:    input.K_AUDIOMUTE,
+	sdl.K_MEDIASELECT:  input.K_MEDIASELECT,
+	sdl.K_WWW:          input.K_WWW,
+	sdl.K_MAIL:         input.K_MAIL,
+	sdl.K_CALCULATOR:   input.K_CALCULATOR,
+	sdl.K_COMPUTER:     input.K_COMPUTER,
+	sdl.K_AC_SEARCH:    input.K_AC_SEARCH,
+	sdl.K_AC_HOME:      input.K_AC_HOME,
+	sdl.K_AC_BACK:      input.K_AC_BACK,
+	sdl.K_AC_FORWARD:   input.K_AC_FORWARD,
+	sdl.K_AC_STOP:      input.K_AC_STOP,
+	sdl.K_AC_REFRESH:   input.K_AC_REFRESH,
+	sdl.K_AC_BOOKMARKS: input.K_AC_BOOKMARKS,
+
+	sdl.K_BRIGHTNESSDOWN: input.K_BRIGHTNESSDOWN,
+	sdl.K_BRIGHTNESSUP:   input.K_BRIGHTNESSUP,
+	sdl.K_DISPLAYSWITCH:  input.K_DISPLAYSWITCH,
+	sdl.K_KBDILLUMTOGGLE: input.K_KBDILLUMTOGGLE,
+	sdl.K_KBDILLUMDOWN:   input.K_KBDILLUMDOWN,
+	sdl.K_KBDILLUMUP:     input.K_KBDILLUMUP,
+	sdl.K_EJECT:          input.K_EJECT,
+	sdl.K_SLEEP:          input.K_SLEEP,
+}
+
+// translate SDL mod keys to input mod keys
+var mods = map[uint16]input.Mod{sdl.KMOD_NONE: input.MOD_NONE,
+	sdl.KMOD_LSHIFT: input.MOD_LSHIFT,
+	sdl.KMOD_RSHIFT: input.MOD_RSHIFT,
+	sdl.KMOD_LCTRL:  input.MOD_LCTRL,
+	sdl.KMOD_RCTRL:  input.MOD_RCTRL,
+	sdl.KMOD_LALT:   input.MOD_LALT,
+	sdl.KMOD_RALT:   input.MOD_RALT,
+	sdl.KMOD_LGUI:   input.MOD_LGUI,
+	sdl.KMOD_RGUI:   input.MOD_RGUI,
+	sdl.KMOD_NUM:    input.MOD_NUM,
+	sdl.KMOD_CAPS:   input.MOD_CAPS,
+	sdl.KMOD_MODE:   input.MOD_MODE,
+	sdl.KMOD_CTRL:   input.MOD_CTRL,
+	sdl.KMOD_SHIFT:  input.MOD_SHIFT,
+	sdl.KMOD_ALT:    input.MOD_ALT,
+	sdl.KMOD_GUI:    input.MOD_GUI,
+}
+
+// translate SDL mouse buttons to input mouse buttons
+var buttons = map[uint8]input.Button{
+	sdl.BUTTON_LEFT:   input.BUTTON_LEFT,
+	sdl.BUTTON_MIDDLE: input.BUTTON_MIDDLE,
+	sdl.BUTTON_RIGHT:  input.BUTTON_RIGHT,
+	sdl.BUTTON_X1:     input.BUTTON_X1,
+	sdl.BUTTON_X2:     input.BUTTON_X2,
+}

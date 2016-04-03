@@ -47,7 +47,7 @@ func (w *sdlWindow) Create(cfg window.WindowConfig) error {
 	gl.Init()
 	gl.Enable(gl.DEPTH_TEST)
 
-	w.resize(w.Width, w.Height)
+	w.Resize(w.Width, w.Height)
 
 	return nil
 }
@@ -59,37 +59,11 @@ func (w *sdlWindow) Destroy() error {
 	return nil
 }
 
-func (w sdlWindow) IsRunning() bool {
-	return w.Running
-}
-
-func (w *sdlWindow) ProcessEvents() {
-	event := sdl.PollEvent()
-	for event != nil {
-		switch e := event.(type) {
-		case *sdl.KeyDownEvent:
-			if e.Keysym.Sym == sdl.K_ESCAPE || e.Keysym.Sym == sdl.K_q {
-				w.Running = false
-			}
-
-		case *sdl.WindowEvent:
-			if e.Event == sdl.WINDOWEVENT_RESIZED {
-				w.resize(int(e.Data1), int(e.Data2))
-			}
-
-		case *sdl.QuitEvent:
-			w.Running = false
-		}
-
-		event = sdl.PollEvent()
-	}
-}
-
 func (w sdlWindow) SwapBuffers() {
 	sdl.GL_SwapWindow(w.window)
 }
 
-func (window *sdlWindow) resize(w, h int) {
+func (window *sdlWindow) Resize(w, h int) {
 	if h <= 0 {
 		h = 1
 	}

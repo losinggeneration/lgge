@@ -32,8 +32,10 @@ func Run(backend string, cfg window.WindowConfig, app application.Application) e
 	}
 	defer app.Destroy()
 
+	app.SetWindow(w)
+
 	then := time.Now()
-	for w.IsRunning() {
+	for app.IsRunning() {
 		events := processEvents()
 
 		now := time.Now()

@@ -37,19 +37,19 @@ type KeyUpEvent struct {
 }
 
 type MouseEvent struct {
-	Which  uint32 // Which mouse
+	Which  uint   // Which mouse
 	Button Button // The mouse button pressed
 	State  bool   // true for pressed, false for released
-	X, Y   int32  // X & Y possition
-	Wheel  int32  // Wheel delta
+	X, Y   int    // X & Y possition
+	Wheel  int    // Wheel delta
 }
 
 type WindowMovement struct {
-	X, Y int32
+	X, Y int
 }
 
 type WindowSize struct {
-	W, H int32
+	W, H int
 }
 
 type WindowEvent struct {

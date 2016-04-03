@@ -13,6 +13,7 @@ func init() {
 func processEvents() []input.Event {
 	events := make([]input.Event, 0)
 	var windowEvent input.WindowEvent
+	var hadWindowEvent bool
 	mouseEvents := make(map[uint32]input.MouseEvent)
 
 	event := sdl.PollEvent()
@@ -21,8 +22,8 @@ func processEvents() []input.Event {
 		case *sdl.KeyDownEvent:
 			k := input.KeyDownEvent{
 				input.KeyEvent{
-					Key:    input.Key(e.Keysym.Sym),
-					Mod:    input.Mod(e.Keysym.Mod),
+					Key:    keys[e.Keysym.Sym],
+					Mod:    mods[e.Keysym.Mod],
 					Repeat: e.Repeat > 0,
 				},
 			}
@@ -31,8 +32,8 @@ func processEvents() []input.Event {
 		case *sdl.KeyUpEvent:
 			k := input.KeyUpEvent{
 				input.KeyEvent{
-					Key:    input.Key(e.Keysym.Sym),
-					Mod:    input.Mod(e.Keysym.Mod),
+					Key:    keys[e.Keysym.Sym],
+					Mod:    mods[e.Keysym.Mod],
 					Repeat: e.Repeat > 0,
 				},
 			}
@@ -40,22 +41,23 @@ func processEvents() []input.Event {
 
 		case *sdl.MouseMotionEvent:
 			m := mouseEvents[e.Which]
-			m.X = e.X
-			m.Y = e.Y
+			m.X = int(e.X)
+			m.Y = int(e.Y)
 			mouseEvents[e.Which] = m
 
 		case *sdl.MouseWheelEvent:
 			m := mouseEvents[e.Which]
-			m.Wheel = e.Y
+			m.Wheel = int(e.Y)
 			mouseEvents[e.Which] = m
 
 		case *sdl.MouseButtonEvent:
 			m := mouseEvents[e.Which]
-			m.Button = input.Button(e.Button)
+			m.Button = buttons[e.Button]
 			m.State = e.State > 0
 			mouseEvents[e.Which] = m
 
 		case *sdl.WindowEvent:
+			hadWindowEvent = true
 			switch e.Event {
 			case sdl.WINDOWEVENT_SHOWN:
 				windowEvent.Shown = true
@@ -81,11 +83,13 @@ func processEvents() []input.Event {
 				windowEvent.Close = true
 
 			case sdl.WINDOWEVENT_MOVED:
-				windowEvent.Moved = input.WindowMovement{X: e.Data1, Y: e.Data2}
+				windowEvent.Moved = input.WindowMovement{X: int(e.Data1), Y: int(e.Data2)}
 			case sdl.WINDOWEVENT_RESIZED:
-				windowEvent.Resized = input.WindowSize{W: e.Data1, H: e.Data2}
+				windowEvent.Resized = input.WindowSize{W: int(e.Data1), H: int(e.Data2)}
 			case sdl.WINDOWEVENT_SIZE_CHANGED:
-				windowEvent.SizeChanged = input.WindowSize{W: e.Data1, H: e.Data2}
+				windowEvent.SizeChanged = input.WindowSize{W: int(e.Data1), H: int(e.Data2)}
+			default:
+				hadWindowEvent = false
 			}
 
 		case *sdl.QuitEvent:
@@ -96,12 +100,12 @@ func processEvents() []input.Event {
 		event = sdl.PollEvent()
 	}
 
-	if windowEvent == (input.WindowEvent{}) {
+	if hadWindowEvent {
 		events = append(events, input.Event{Type: input.EventWindow, Event: windowEvent})
 	}
 
 	for w, m := range mouseEvents {
-		m.Which = w
+		m.Which = uint(w)
 		events = append(events, input.Event{Type: input.EventMouse, Event: m})
 	}
 
