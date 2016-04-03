@@ -1,0 +1,20 @@
+hash: 5190b105771a934d35fcd8aba715757dbb91d04271dbd680a01847791cde4c1f
+updated: 2016-03-22T20:07:27.579511781-07:00
+imports:
+- name: github.com/go-gl/gl
+  version: cd1cf4a9b229045e8a41d5945fc597617e8bae4f
+  subpackages:
+  - v3.3-compatibility/gl
+- name: github.com/go-gl/mathgl
+  version: 667e7964455c5d0db23927d59cfd72852686e419
+  subpackages:
+  - mgl64
+- name: github.com/veandco/go-sdl2
+  version: 3105ff129069157b33de6d246abcefb4d7178d45
+  subpackages:
+  - sdl
+- name: golang.org/x/image
+  version: 7c492694a6443a92fd349fda0c4c7b587040f161
+  subpackages:
+  - math/f64
+devImports: []
