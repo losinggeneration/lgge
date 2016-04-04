@@ -2,10 +2,10 @@ package engine
 
 import (
 	"runtime"
-	"time"
 
 	"github.com/losinggeneration/lgge/application"
 	"github.com/losinggeneration/lgge/input"
+	"github.com/losinggeneration/lgge/timer"
 	"github.com/losinggeneration/lgge/window"
 )
 
@@ -33,16 +33,14 @@ func Run(backend string, cfg window.WindowConfig, app application.Application) e
 	defer app.Destroy()
 
 	app.SetWindow(w)
+	t := timer.NewTimer()
 
-	then := time.Now()
 	for app.IsRunning() {
 		events := processEvents()
 
-		now := time.Now()
-		since := now.Sub(then)
-		then = now
+		t.Update()
 
-		app.Prepare(events, float64(since)/float64(time.Second))
+		app.Prepare(events, t.Delta())
 		app.Render()
 
 		w.SwapBuffers()
