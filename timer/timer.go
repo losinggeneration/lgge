@@ -2,22 +2,29 @@ package timer
 
 import "time"
 
-type timer struct {
-	s      time.Time // the start time
-	l      time.Time // the last update time
-	f      int       // frames per second
+type Timer struct {
+	start  time.Time // the start time
+	last   time.Time // the last update time
+	fps    int       // frames per second
 	frames int       // current frame count
 }
 
-var t *timer
+// NewTimer creates a new Timer
+func NewTimer() *Timer {
+	t := Timer{}
+	t.Reset()
 
-func Reset() {
+	return &t
+}
+
+func (t *Timer) Reset() {
 	n := time.Now()
-	t = &timer{s: n, l: n}
+	*t = Timer{start: n, last: n}
 }
 
 // Updates the internal state. Should be called every frame by the main loop
-func Update() {
+// You should not call this from more than one go routine at a time.
+func (t *Timer) Update() {
 	n := time.Now()
 
 	if t.frames == 0 {
@@ -29,7 +36,7 @@ func Update() {
 		go func() {
 			select {
 			case <-time.After(1 * time.Second):
-				update.f = update.frames
+				update.fps = update.frames
 				update.frames = 0
 			}
 		}()
@@ -38,20 +45,20 @@ func Update() {
 		t.frames++
 	}
 
-	t.l = n
+	t.last = n
 }
 
 // The time since we've created the timer
-func Time() float64 {
-	return time.Since(t.s).Seconds()
+func (t Timer) Time() float64 {
+	return time.Since(t.start).Seconds()
 }
 
 // Time since the last call to Update
-func Delta() float64 {
-	return time.Since(t.l).Seconds()
+func (t Timer) Delta() float64 {
+	return time.Since(t.last).Seconds()
 }
 
 // The approximate frames per second
-func FPS() int {
-	return t.f
+func (t Timer) FPS() int {
+	return t.fps
 }
