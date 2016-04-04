@@ -2,6 +2,7 @@ package application
 
 import (
 	"github.com/losinggeneration/lgge/input"
+	"github.com/losinggeneration/lgge/timer"
 	"github.com/losinggeneration/lgge/window"
 )
 
@@ -10,9 +11,9 @@ type BaseApplication struct {
 	Window  window.Window
 }
 
-func (b *BaseApplication) Init() error                   { b.Running = true; return nil }
-func (b BaseApplication) IsRunning() bool                { return b.Running }
-func (b BaseApplication) Destroy() error                 { return nil }
-func (b BaseApplication) Prepare([]input.Event, float64) {}
-func (b BaseApplication) Render()                        {}
-func (b *BaseApplication) SetWindow(w window.Window)     { b.Window = w }
+func (b *BaseApplication) Init() error                        { b.Running = true; return nil }
+func (b BaseApplication) IsRunning() bool                     { return b.Running }
+func (b BaseApplication) Destroy() error                      { return nil }
+func (b BaseApplication) Prepare([]input.Event, *timer.Timer) {}
+func (b BaseApplication) Render()                             {}
+func (b *BaseApplication) SetWindow(w window.Window)          { b.Window = w }

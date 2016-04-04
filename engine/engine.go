@@ -40,7 +40,7 @@ func Run(backend string, cfg window.WindowConfig, app application.Application) e
 
 		t.Update()
 
-		app.Prepare(events, t.Delta())
+		app.Prepare(events, t)
 		app.Render()
 
 		w.SwapBuffers()
