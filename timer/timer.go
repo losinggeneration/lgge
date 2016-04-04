@@ -4,6 +4,7 @@ import "time"
 
 type Timer struct {
 	start  time.Time // the start time
+	now    time.Time // the time now
 	last   time.Time // the last update time
 	fps    int       // frames per second
 	frames int       // current frame count
@@ -19,13 +20,14 @@ func NewTimer() *Timer {
 
 func (t *Timer) Reset() {
 	n := time.Now()
-	*t = Timer{start: n, last: n}
+	*t = Timer{start: n, now: n, last: n}
 }
 
 // Updates the internal state. Should be called every frame by the main loop
 // You should not call this from more than one go routine at a time.
 func (t *Timer) Update() {
-	n := time.Now()
+	t.last = t.now
+	t.now = time.Now()
 
 	if t.frames == 0 {
 		// Scope the global t for the goroutine so Reset can be called
@@ -44,8 +46,6 @@ func (t *Timer) Update() {
 	} else {
 		t.frames++
 	}
-
-	t.last = n
 }
 
 // The time since we've created the timer
@@ -55,7 +55,7 @@ func (t Timer) Time() float64 {
 
 // Time since the last call to Update
 func (t Timer) Delta() float64 {
-	return time.Since(t.last).Seconds()
+	return t.now.Sub(t.last).Seconds()
 }
 
 // The approximate frames per second
