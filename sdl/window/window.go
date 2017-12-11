@@ -40,6 +40,10 @@ func (w *sdlWindow) Create(cfg window.WindowConfig) error {
 		return err
 	}
 
+	if err := sdl.GL_SetSwapInterval(1); err != nil {
+		return err
+	}
+
 	w.context = context
 	w.Running = true
 
