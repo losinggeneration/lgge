@@ -1,18 +1,28 @@
 package glu
 
-import (
-	"math"
+var _Perspective func(fovy, aspect, near, far float64)
+var _LookAt func(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ float64)
 
-	"github.com/go-gl/gl/v3.3-compatibility/gl"
-	"github.com/go-gl/mathgl/mgl64"
-)
+func RegisterPerspective(fn func(fovy, aspect, near, far float64)) {
+	_Perspective = fn
+}
+
+func RegisterLookAt(fn func(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ float64)) {
+	_LookAt = fn
+}
 
 func Perspective(fovy, aspect, near, far float64) {
-	M := mgl64.Perspective((fovy*math.Pi)/180.0, aspect, near, far)
-	gl.MultMatrixd(&M[0])
+	if _Perspective == nil {
+		panic("Please register a Perspective with glu.RegisterPespective")
+	}
+
+	_Perspective(fovy, aspect, near, far)
 }
 
 func LookAt(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ float64) {
-	M := mgl64.LookAt(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ)
-	gl.MultMatrixd(&M[0])
+	if _LookAt == nil {
+		panic("Please register a LookAt with glu.RegisterLookAt")
+	}
+
+	_LookAt(eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ)
 }
