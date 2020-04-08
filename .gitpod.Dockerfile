@@ -2,6 +2,7 @@ FROM gitpod/workspace-full
 
 RUN apt install libsdl2-dev
 
+
 USER gitpod
 
 # Install custom tools, runtime, etc. using apt-get
