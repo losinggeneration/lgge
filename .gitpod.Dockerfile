@@ -1,7 +1,8 @@
 FROM gitpod/workspace-full
 
-RUN apt install libsdl2-dev
+USER root
 
+RUN apt update && apt install -y libsdl2-dev
 
 USER gitpod
 
